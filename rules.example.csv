@@ -1,0 +1,4 @@
+Enabled,Action,Seconds,Match,Pattern
+false,delete,0,contains,example unwanted sentence
+false,timeout,600,wholeword,examplebannedword
+false,ban,0,exact,example banned sentence

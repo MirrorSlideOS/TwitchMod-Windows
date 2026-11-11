@@ -1,0 +1,27 @@
+name: Check repository files
+on:
+  push:
+  pull_request:
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse PowerShell source
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path './TwitchMod.ps1'), [ref]$tokens, [ref]$errors) | Out-Null
+          if ($errors) { $errors | Format-List | Out-String | Write-Host; exit 1 }
+      - name: Validate JSON and CSV
+        shell: pwsh
+        run: |
+          $null = Get-Content -Raw ./config.json | ConvertFrom-Json
+          $rules = @(Import-Csv ./rules.csv)
+          if ($rules.Count -lt 1) { throw 'Expected example rules' }
+      - name: Check private files are absent
+        shell: pwsh
+        run: |
+          if (Test-Path ./twitch_tokens.dpapi) { throw 'Private tokens must not be committed' }
+          if (Test-Path ./chat.log) { throw 'Chat logs must not be committed' }

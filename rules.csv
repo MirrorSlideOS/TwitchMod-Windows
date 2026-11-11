@@ -1,0 +1,4 @@
+Enabled,Action,Seconds,Match,Pattern
+false,timeout,600,contains,example spam phrase
+false,ban,0,wholeword,examplebannedword
+false,delete,0,contains,example unwanted sentence

@@ -1,0 +1,7 @@
+{
+  "client_id": "PASTE_YOUR_TWITCH_CLIENT_ID",
+  "channel": "YOUR_CHANNEL_NAME",
+  "auto_moderation": false,
+  "skip_moderators": true,
+  "log_chat_locally": false
+}

@@ -1,0 +1,13 @@
+# Private Twitch authorization and logs
+twitch_tokens.dpapi
+*.dpapi
+chat.log
+*.log
+# Editor/system clutter
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.tmp
+*.bak
